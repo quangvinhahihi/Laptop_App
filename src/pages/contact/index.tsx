@@ -1,10 +1,14 @@
 import React from "react";
+import Brand from "../../components/brand";
+import HotProducts from "../../components/hot-products";
 
-const Contact = () => {
-    return(
-        <div>
-            <h1>CONTACT PAGE</h1>
-        </div>
-    )
-}
-export default Contact
+const Home = () => {
+  return (
+    <div className="pt-10">
+      <Brand />
+      <HotProducts />
+    </div>
+  );
+};
+
+export default Home;
