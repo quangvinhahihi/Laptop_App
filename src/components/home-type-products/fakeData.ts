@@ -20,7 +20,7 @@ export const products = [
   {
     name: "MSI Gaming GE76 Raider",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/249149/msi-gaming-ge76-raider-11uh-i9-434vn-2-2-750x500.jpg",
+      "https://laptop88.vn//media/news/894_asus_laptop_gaming_rog_min.png",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -37,7 +37,7 @@ export const products = [
   {
     name: "MSI Gaming GE76 Raider",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/249149/msi-gaming-ge76-raider-11uh-i9-434vn-2-2-750x500.jpg",
+      "https://cdn.tgdd.vn/Products/Images/44/304867/asus-tuf-gaming-f15-fx506hf-i5-hn014w-thumb-600x600.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -54,7 +54,7 @@ export const products = [
   {
     name: "MSI Gaming GE76 Raider",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/249149/msi-gaming-ge76-raider-11uh-i9-434vn-2-2-750x500.jpg",
+      "https://cdn.tgdd.vn/Products/Images/44/249152/msi-gaming-ge66-raider-11ug-i7-258vn-600x600.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -89,7 +89,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://cdn.tgdd.vn/Files/2020/05/04/1253455/1_800x450.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -106,7 +106,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://newtechshop.vn/wp-content/uploads/2024/09/1-3.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -123,7 +123,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://laptopcuongphat.com/hoanghung/5/images/laptop-cho-dan-van-phong-duoi-10-trieu.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -141,7 +141,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://www.acervietnam.com.vn/wp-content/uploads/2022/03/mua-do-hoa-2d-cho-dan-thiet-ke-4.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -158,7 +158,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2022/11/laptop-cho-sinh-vien-thiet-ke-do-hoa-1.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -175,7 +175,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://cdn.tgdd.vn/hoi-dap/1022621/cach-chon-laptop-de-su-dung-thiet-ke-do-hoa-va-ky-4-800x444.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -192,7 +192,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://laptop88.vn/media/news/1303_laptopvedohoatot2.png",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -210,7 +210,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://cdn.tgdd.vn/Files/2013/11/12/534278/laptop-gia-re-danh-cho-sinh-vien-1.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -227,7 +227,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://icare.center/uploads/images/C%E1%BB%ADa%20h%C3%A0ng/laptop-cu-gia-re.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -244,7 +244,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://laptop678.vn/wp-content/uploads/2024/08/laptop-cu-gia-re-2-2.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,
@@ -261,7 +261,7 @@ export const products = [
   {
     name: "Asus Vivobook Go 15",
     image:
-      "https://cdn.tgdd.vn/Products/Images/44/311178/asus-vivobook-go-15-e1504fa-r5-nj776w-glr-2-750x500.jpg",
+      "https://www.phucanh.vn/media/news/1906_top-laptop-van-phong-gia-re-2024-1.jpg",
     discount: 10,
     price: 35990000,
     oldPrice: 39990000,

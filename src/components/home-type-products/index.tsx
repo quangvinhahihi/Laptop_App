@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { products } from "./fakeData";
 import ProductCard from "../hot-products/productCard";
 import { dataOptions, IProduct, IOption } from "./home-type-products.interface";
+import {useNavigate } from "react-router-dom";
 
 const HomeTypeProducts = () => {
+  const navigate = useNavigate();
+
   const [optionSelected, setOptionSelected] = useState<IOption>(dataOptions[0]);
   // optionSelected.value => gaming/ofice/design/student
 
@@ -11,7 +14,7 @@ const HomeTypeProducts = () => {
     products.filter((x) => x.category === optionSelected.value)
   );
 
-  console.log('data: ', data);
+  console.log("data: ", data);
 
   // có 2 cách để lọc dữ liệu
   // cách 1: filter/lọc trực tiếp ở mapping products
@@ -27,7 +30,7 @@ const HomeTypeProducts = () => {
               key={item.id}
               onClick={() => {
                 setOptionSelected(item);
-                setData(products.filter((x) => x.category === item.value))
+                setData(products.filter((x) => x.category === item.value));
               }}
               className={`px-4 py-3 text-md font-semibold rounded-full cursor-pointer ${
                 optionSelected.id === item.id
@@ -46,9 +49,14 @@ const HomeTypeProducts = () => {
           .map((item: IProduct, index: number) => (
             <ProductCard key={index} item={item} />
           ))}
-          {/* {data.map((item: IProduct, index: number) => (
+        {/* {data.map((item: IProduct, index: number) => (
             <ProductCard key={index} item={item} />
-          ))} */}
+          ))} */}   
+      </div>
+      <div 
+      onClick={() => navigate("/products")}
+      className="m-auto mb-6 px-6 py-2 bg-white hover:bg-blue-100 border-blue-600 cursor-pointer border rounded-full text-blue-600 w-fit">
+        Xem thêm sản phẩm
       </div>
     </div>
   );
