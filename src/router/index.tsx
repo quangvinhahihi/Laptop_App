@@ -3,6 +3,7 @@ import Home from "../pages/home";
 import Contact from "../pages/contact";
 import Layout from "../layout";
 import Products from "../pages/products";
+import ProductDetail from "../pages/detail";
 
 export const router = createBrowserRouter([
   {
@@ -14,13 +15,17 @@ export const router = createBrowserRouter([
         element: <Home />
       },
       {
+        path: "/products",
+        element: <Products />
+      },
+      {
         path: "/contact",
         element: <Contact />
       },
       {
-        path: "/products",
-        element: <Products />
-      }
+        path: "/product-detail/:productId",
+        element: <ProductDetail />
+      },
     ]
   }
 ]);
