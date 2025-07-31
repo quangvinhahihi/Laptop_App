@@ -1,5 +1,5 @@
 import { CheckboxOptionType } from "antd";
-import { IProduct } from "../../components/home-type-products/home-type-products.interface";
+import { IProduct } from "../../components/home-type-products/homeTypeProducts.interface";
 
 export interface Props {
   item: IProduct;

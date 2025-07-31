@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { products } from "./fakeData";
 import ProductCard from "../hot-products/productCard";
-import { dataOptions, IProduct, IOption } from "./home-type-products.interface";
-import {useNavigate } from "react-router-dom";
+import { dataOptions, IProduct, IOption } from "./homeTypeProducts.interface";
+import { useNavigate } from "react-router-dom";
 
 const HomeTypeProducts = () => {
   const navigate = useNavigate();
 
   const [optionSelected, setOptionSelected] = useState<IOption>(dataOptions[0]);
   // optionSelected.value => gaming/ofice/design/student
-
   const [data, setData] = useState<IProduct[]>(
     products.filter((x) => x.category === optionSelected.value)
   );
@@ -22,7 +21,7 @@ const HomeTypeProducts = () => {
 
   return (
     <div>
-      <h2>Sản Phẩm Theo Danh Mục</h2>
+      <h2 className="text-2xl font-bold mb-4">Sản Phẩm Theo Danh Mục</h2>
       <div className="flex justify-center w-full">
         <div className="flex gap-2 shadow-md rounded-full p-1 w-fit border-red-100 border">
           {dataOptions.map((item) => (
@@ -51,11 +50,14 @@ const HomeTypeProducts = () => {
           ))}
         {/* {data.map((item: IProduct, index: number) => (
             <ProductCard key={index} item={item} />
-          ))} */}   
+          ))} */}
       </div>
-      <div 
-      onClick={() => navigate("/products")}
-      className="m-auto mb-6 px-6 py-2 bg-white hover:bg-blue-100 border-blue-600 cursor-pointer border rounded-full text-blue-600 w-fit">
+      <div
+        onClick={() => {
+          navigate("/products");
+        }}
+        className="m-auto mb-6 px-6 py-2 bg-white hover:bg-blue-100 border-blue-600 cursor-pointer border rounded-full text-blue-600 w-fit"
+      >
         Xem thêm sản phẩm
       </div>
     </div>
