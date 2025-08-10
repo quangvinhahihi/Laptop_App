@@ -1,11 +1,12 @@
 export interface IHotProduct {
-  id?: number;
+  id: number;
   name: string;
   image: string;
   discount: number;
   price: number;
   oldPrice: number;
   isHot: boolean;
+  quantity?: number;
 }
 
 export const dataHotProducts: IHotProduct[] = [
@@ -20,7 +21,7 @@ export const dataHotProducts: IHotProduct[] = [
     isHot: true,
   },
   {
-    id:2,
+    id: 2,
     name: "Asus ROG Zephyrus G14",
     image:
       "https://cdn.tgdd.vn/Products/Images/44/302466/asus-gaming-rog-zephyrus-g14-ga402rj-r7-l8030w-glr-fix-2-750x500.jpg",

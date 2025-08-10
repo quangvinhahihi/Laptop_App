@@ -1,4 +1,3 @@
-
 export const dataOptions:IOption[] = [
   {
     id: 1,
@@ -52,4 +51,5 @@ export interface IProduct {
   specs: ISpec;
   brand: string;
   category: string;
+  quantity?: number;
 }
