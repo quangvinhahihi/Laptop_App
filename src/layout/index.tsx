@@ -1,18 +1,21 @@
 import React from "react";
 import Navbar from "../components/navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/footer";
 
 const Layout = () => {
-  return(
+  const location = useLocation();
+  const hideInterface = location.pathname === "/login" || location.pathname === "/register";
+
+  return (
     <div>
-      <Navbar />
+      {!hideInterface && <Navbar />}
       <div className="md:px-5 lg:px-12 xl:px-32 px-2">
         <Outlet />
       </div>
-      <Footer />
+      {!hideInterface && <Footer />}
     </div>
-  )
-}
+  );
+};
 
 export default Layout;

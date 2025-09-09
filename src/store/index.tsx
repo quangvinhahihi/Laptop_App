@@ -6,6 +6,6 @@ type Store = {
 };
 
 export const useStore = create<Store>()((set) => ({
-  countQuantityCart: 100,
+  countQuantityCart: 1,
   incQuantityCart: () => set((state) => ({ countQuantityCart: state.countQuantityCart + 1 })),
 }))
