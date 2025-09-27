@@ -14,6 +14,7 @@ import { products, newestProducts } from "./fakeData";
 import { IProduct } from "../../components/home-type-products/homeTypeProducts.interface";
 import ProductCard from "./productCard";
 import { FadeLoader } from "react-spinners";
+import { Pagination } from "antd";
 
 const items = [
   {
@@ -33,6 +34,19 @@ const Products = () => {
   const [ramSelected, setRamSelected] = useState("");
   const [storageSelected, setStorageSelected] = useState("");
   const [brandSelected, setBrandSelected] = useState("");
+  const [pagination, setPagination] = useState({
+    page : 1,
+    total : 0,
+});
+
+  const clearfilter = () => {
+    setCategorySelected("");
+    setBrandSelected("");
+    setRamSelected("");
+    setStorageSelected("");
+    setPriceSorting("newest");
+    getProducts();
+  };
 
   const onChangeBrand: GetProp<typeof Checkbox.Group, "onChange"> = (
     checkedValues
@@ -95,6 +109,7 @@ const Products = () => {
       }
       const result = await response.json();
       console.log("KET QUA: ", result);
+      console.log("pagination", result.pagination);
       setProductData(result.data);
       setIsLoading(false);
     } catch (error: any) {
@@ -248,7 +263,7 @@ const Products = () => {
 
             <button
               className="w-full py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors cursor-pointer !rounded-button whitespace-nowrap"
-              // onClick={resetFilters}
+              onClick={clearfilter}
             >
               Xóa bộ lọc
             </button>
@@ -286,6 +301,9 @@ const Products = () => {
               ))}
             </div>
           )}
+          <div className="py-8">
+            <Pagination align="center" defaultCurrent={1} total={50} onChange={(pageNumber) => console.log("pageNumber: ", pageNumber)}/>
+          </div>
         </div>
       </div>
     </div>

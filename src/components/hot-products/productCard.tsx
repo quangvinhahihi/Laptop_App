@@ -11,11 +11,10 @@ interface Props {
 
 const ProductCard = (props: Props) => {
   const { item, isHot } = props;
-  console.log("isHot: ", isHot);
   const navigate = useNavigate()
 
   return (
-    <div onClick={() => navigate(`/product-detail/${item?.id}`)} className="rounded-xl bg-white shadow-md hover:shadow-xl transition-transform cursor-pointer">
+    <div onClick={() => navigate(`/product-detail/${item?._id}`)} className="rounded-xl bg-white shadow-md hover:shadow-xl transition-transform cursor-pointer">
       <div className="relative">
         <img className="rounded-t-xl" src={item.thumbnail} alt="" />
         {isHot && (
