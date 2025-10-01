@@ -1,72 +1,125 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Input } from "antd";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    // Logic xử lý đăng nhập thực tế sẽ ở đây
+    console.log("Thông tin:", { username, password });
+    const loginUrl = "https://lapshop-be.onrender.com/api/auth/login";
+
+    // const payload = {
+    //   username: username,
+    //   password: password
+    // }
+
+    axios
+      .post(loginUrl, {
+        username, // username: 'value'
+        password, // password: 'value'
+      })
+      .then(function (response) {
+        console.log("THANH CONG: ", response.data);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        navigate("/");
+        toast.success("Đăng nhập thành công!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      })
+      .catch(function (error) {
+        console.log("THAT BAI");
+      });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f3f5f0]">
-      <div className="bg-white rounded-2xl shadow-lg flex w-[800px] overflow-hidden">
-        <div className="w-1/2 flex items-center justify-center p-6">
-          <img
-            src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-young-woman-sits-and-works-at-a-computer-png-image_6317827.png"
-            alt=""
-          />
-        </div>
+    // Nền gradient toàn màn hình (trending)
+    <div
+      className="min-h-screen flex items-center justify-center p-4 
+                    bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"
+    >
+      {/* Khối Glassmorphism (Kính mờ) */}
+      <div
+        className="w-full max-w-md p-8 
+                      bg-white border border-gray border-opacity-30 
+                      rounded-2xl shadow-2xl transition duration-500 hover:shadow-3xl"
+      >
+        <h2 className="text-4xl text-purple-900 text-center mb-8 tracking-wider font-bold">
+          Lapshop
+        </h2>
 
-        <div className="w-1/2 p-8 flex flex-col justify-center">
-          <h2 className="text-2xl font-bold mb-6 text-center">Sign in</h2>
-
-          <div className="mb-4">
-            <label className="flex items-center border-b border-gray-400 py-2">
-              <i className="fa-solid fa-user text-gray-500"></i>
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full focus:outline-none"
-              />
-            </label>
+        <form>
+          {/* Input: Username */}
+          <label className="text-gray-400 text-sm">Tên đăng nhập</label>
+          <div className="mb-6 mt-1">
+            <Input
+              placeholder="Tên đăng nhập hoặc Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full p-3 rounded-lg bg-white bg-opacity-20 
+                         border border-blue-600 border-opacity-20 focus:outline-none focus:ring-2 
+                         focus:ring-white focus:ring-opacity-50 transition duration-300
+                         font-light"
+            />
           </div>
 
-          <div className="mb-4">
-            <label className="flex items-center border-b border-gray-400 py-2">
-              <i className="fa-solid fa-lock text-gray-500"></i>
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full focus:outline-none"
-              />
-            </label>
+          {/* Input: Password */}
+          <label className="text-gray-400 text-sm">Mật khẩu</label>
+          <div className="mb-8 mt-1">
+            <Input.Password
+              placeholder="Mật khẩu"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-3 rounded-lg bg-white bg-opacity-20 
+                         border border-blue-600 border-opacity-20 focus:outline-none focus:ring-2 
+                         focus:ring-white focus:ring-opacity-50 transition duration-300
+                         font-light"
+            />
           </div>
+        </form>
 
-          <div className="flex items-center justify-between mb-6">
-            <label className="flex items-center text-sm">
-              <input type="checkbox" className="mr-2" />
-              Remember me
-            </label>
-            <span
-              onClick={() => navigate("/register")}
-              className="text-sm text-blue-500 hover:underline cursor-pointer"
-            >
-              Create an account
-            </span>
-          </div>
+        {/* Button: Đăng nhập */}
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="w-full p-3 bg-gray-100 text-purple-600 rounded-lg font-bold 
+                       hover:bg-gray-200 hover:shadow-lg transition duration-300 transform 
+                       hover:scale-[1.02] active:scale-[0.98] focus:outline-none"
+        >
+          Đăng nhập
+        </button>
+        <div className="w-full h-2 border-b border-purple-400 mt-6" />
 
-          <button
-            onClick={() => navigate("/")}
-            className="bg-sky-500 text-white w-full py-2 rounded hover:bg-sky-600"
+        {/* Liên kết Đăng ký và Quên mật khẩu */}
+        <div className="flex justify-between mt-6 text-sm text-purple-500 font-bold">
+          {/* Link Đăng ký */}
+          <a
+            href="/register"
+            className="opacity-80 hover:opacity-100 hover:underline transition duration-300"
           >
-            Log in
-          </button>
+            Tạo tài khoản mới (Đăng ký)
+          </a>
 
-          <p className="text-center text-sm mt-6 mb-2">Or login with</p>
-          <div className="flex justify-center space-x-4">
-            <button className="text-gray-600 hover:text-blue-600">
-              <i className="fa-brands fa-facebook"></i>
-            </button>
-            <button className="text-gray-600 hover:text-red-600">
-              <i className="fa-brands fa-google"></i>
-            </button>
-          </div>
+          {/* Link Quên mật khẩu */}
+          <a
+            href="/forgot-password"
+            className="opacity-80 hover:opacity-100 hover:underline transition duration-300"
+          >
+            Quên mật khẩu?
+          </a>
         </div>
       </div>
     </div>
