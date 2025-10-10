@@ -120,7 +120,6 @@ const Register = () => {
   };
 
   return (
-    // Nền gradient toàn màn hình (trending)
     <div
       className="min-h-screen flex items-center justify-center p-4 
                     bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200"
