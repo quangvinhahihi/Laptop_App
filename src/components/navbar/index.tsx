@@ -16,8 +16,8 @@ const Navbar = () => {
   // console.log('newPathName: ', newPathName);
 
   // localStorage.getItem("user") => no la string
-  const userInfo = JSON.parse(localStorage.getItem("user") as string); // chuyen string thanh object
-  console.log("userInfo: ", userInfo);
+  const useInfo = JSON.parse(localStorage.getItem("user") as string); // chuyen string thanh object
+  console.log("useInfo: ", useInfo);
 
   const hanldeLogout = () => {
     navigate('/login');
@@ -26,7 +26,7 @@ const Navbar = () => {
 
   const content = (
     <div>
-      <p className="font-bold text-center text-purple-500">{userInfo?.name}</p>
+      <p className="font-bold text-center text-purple-500">{useInfo?.name}</p>
       <button onClick={hanldeLogout} className="mt-4 bg-blue-600 text-white px-2 py-1 rounded-md hover:bg-blue-700 transition-colors text-sm font-medium cursor-pointer !rounded-button whitespace-nowrap">
         Đăng xuất
       </button>
@@ -112,7 +112,7 @@ const Navbar = () => {
 
         {/* User Actions */}
         <div className="flex items-center space-x-5">
-          {userInfo ? (
+          {useInfo ? (
             <div className="flex gap-4">
               <button
                 onClick={() => navigate("/cart")}
