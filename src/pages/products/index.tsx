@@ -15,6 +15,8 @@ import { IProduct } from "../../components/home-type-products/homeTypeProducts.i
 import ProductCard from "./productCard";
 import { FadeLoader } from "react-spinners";
 import { Pagination } from "antd";
+import { useLocation } from "react-router-dom";
+import { useUserInfo } from "../../store/useUserInfo";
 
 const items = [
   {
@@ -27,6 +29,8 @@ const items = [
 ];
 
 const Products = () => {
+  const { state } = useLocation(); // CACH 1
+  const { brandSelectedStore, setBrandSelectedStore } = useUserInfo();
   const [categorySelected, setCategorySelected] = useState("");
   const [priceSorting, setPriceSorting] = useState("newest");
   const [productData, setProductData] = useState<IProduct[]>([]);
@@ -35,37 +39,27 @@ const Products = () => {
   const [storageSelected, setStorageSelected] = useState("");
   const [brandSelected, setBrandSelected] = useState("");
   const [pagination, setPagination] = useState({
-    page : 1,
-    total : 0,
-});
-
-  const clearfilter = () => {
-    setCategorySelected("");
-    setBrandSelected("");
-    setRamSelected("");
-    setStorageSelected("");
-    setPriceSorting("newest");
-    getProducts();
-  };
+    page: 1,
+    total: 0,
+  });
 
   const onChangeBrand: GetProp<typeof Checkbox.Group, "onChange"> = (
     checkedValues
   ) => {
-    console.log("checked = ", checkedValues);
     // arr = ["dell", "hp", "lenovo", "asus", "acer", "msi", "apple", "gigabyte"]
     // string = "dell,hp,lenovo,asus,acer,msi,apple,gigabyte"
     const brandJoined = checkedValues.join(",");
     console.log("brandJoined: ", brandJoined);
     setBrandSelected(brandJoined);
-    // const url = `https://lapshop-be.onrender.com/api/product?page=1&limit=100&brand=${brandJoined}`;
-    const url = `https://lapshop-be.onrender.com/api/product?page=1&limit=100&category=${categorySelected}&brand=${brandJoined}&specs[ram]=${ramSelected}&specs[storage]=${storageSelected}`;
+    // const url = `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&brand=${brandJoined}`;
+    const url = `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&category=${categorySelected}&brand=${brandJoined}&specs[ram]=${ramSelected}&specs[storage]=${storageSelected}`;
     handleFilterProducts(url);
   };
 
   const handleFilterCategory = async (val: string) => {
     setCategorySelected(val);
-    const url = `https://lapshop-be.onrender.com/api/product?page=1&limit=100&category=${val}&brand=${brandSelected}&specs[ram]=${ramSelected}&specs[storage]=${storageSelected}`;
-    // https://lapshop-be.onrender.com/api/product?category=GAMING&page=1&limit=100&brand=Apple,ASUS&specs[ram]=16GB&specs[storage]=512GB
+    const url = `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&category=${val}&brand=${brandSelected}&specs[ram]=${ramSelected}&specs[storage]=${storageSelected}`;
+    // https://lapshop-be.onrender.com/api/product?category=GAMING&page=${pagination.page}&limit=10&brand=Apple,ASUS&specs[ram]=16GB&specs[storage]=512GB
     handleFilterProducts(url);
   };
 
@@ -96,7 +90,11 @@ const Products = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const getProducts = async () => {
-    const url = "https://lapshop-be.onrender.com/api/product?page=1&limit=100";
+    // const url =
+    //   `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&brand=${state?.brandSelected || ""}`;
+    // CACH 2  
+    const url =
+      `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&brand=${brandSelectedStore}`;
     handleFilterProducts(url);
   };
 
@@ -108,8 +106,10 @@ const Products = () => {
         throw new Error(`Response status: ${response.status}`);
       }
       const result = await response.json();
-      console.log("KET QUA: ", result);
-      console.log("pagination", result.pagination);
+      setPagination({
+        page: result.pagination.page,
+        total: result.pagination.total,
+      });
       setProductData(result.data);
       setIsLoading(false);
     } catch (error: any) {
@@ -121,22 +121,34 @@ const Products = () => {
   const handleChangeRam = async (val: string) => {
     console.log("val ram: ", val);
     setRamSelected(val);
-    // const url = `https://lapshop-be.onrender.com/api/product?page=1&limit=100&specs[ram]=${val}`;
-    const url = `https://lapshop-be.onrender.com/api/product?page=1&limit=100&category=${categorySelected}&brand=${brandSelected}&specs[ram]=${val}&specs[storage]=${storageSelected}`;
+    // const url = `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&specs[ram]=${val}`;
+    const url = `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&category=${categorySelected}&brand=${brandSelected}&specs[ram]=${val}&specs[storage]=${storageSelected}`;
     handleFilterProducts(url);
   };
 
   const handleChangeStorage = async (val: string) => {
-    console.log("val storage: ", val);
     setStorageSelected(val);
-    // const url = `https://lapshop-be.onrender.com/api/product?page=1&limit=100&specs[storage]=${val}`;
-    const url = `https://lapshop-be.onrender.com/api/product?page=1&limit=100&category=${categorySelected}&brand=${brandSelected}&specs[ram]=${ramSelected}&specs[storage]=${val}`;
+    // const url = `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&specs[storage]=${val}`;
+    const url = `https://lapshop-be.onrender.com/api/product?page=${pagination.page}&limit=10&category=${categorySelected}&brand=${brandSelected}&specs[ram]=${ramSelected}&specs[storage]=${val}`;
     handleFilterProducts(url);
   };
 
+  const handlePagination = (pageSelected: number) => {
+    const url = `https://lapshop-be.onrender.com/api/product?page=${pageSelected}&limit=10&category=${categorySelected}&brand=${brandSelected}&specs[ram]=${ramSelected}&specs[storage]=${storageSelected}`;
+    handleFilterProducts(url);
+  }
+
   useEffect(() => {
+    // MOUNTING => luôn gọi đầu tiên khi vào component
     getProducts();
   }, []);
+
+  useEffect(() => {
+    // UNMOUNTING => luôn gọi khi kết thúc component => thoát khỏi component
+    return() => {
+      setBrandSelectedStore("");
+    }
+  }, [])
 
   return (
     <div className="mt-4 max-w-7xl mx-auto">
@@ -177,7 +189,8 @@ const Products = () => {
               <Checkbox.Group
                 className="flex flex-col gap-2"
                 options={brands}
-                defaultValue={[""]}
+                // defaultValue={[state?.brandSelected]} // giá trị mặc định => giá trị ban đầu // state.brandSelected giá trị của brand khi navigate từ home
+                defaultValue={[brandSelectedStore]} // giá trị mặc định => giá trị ban đầu // state.brandSelected giá trị của brand khi navigate từ home
                 onChange={onChangeBrand}
               />
 
@@ -263,7 +276,7 @@ const Products = () => {
 
             <button
               className="w-full py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors cursor-pointer !rounded-button whitespace-nowrap"
-              onClick={clearfilter}
+              // onClick={resetFilters}
             >
               Xóa bộ lọc
             </button>
@@ -302,7 +315,12 @@ const Products = () => {
             </div>
           )}
           <div className="py-8">
-            <Pagination align="center" defaultCurrent={1} total={50} onChange={(pageNumber) => console.log("pageNumber: ", pageNumber)}/>
+            <Pagination
+              align="center"
+              defaultCurrent={pagination.page}
+              total={pagination.total}
+              onChange={(pageNumber) => handlePagination(pageNumber)}
+            />
           </div>
         </div>
       </div>

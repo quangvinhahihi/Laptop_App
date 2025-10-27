@@ -4,6 +4,7 @@ import Logo from "../../assets/imgs/logo.png";
 import { useUserCart } from "../../store/useUserCart";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Popover } from "antd";
+import { ShoppingOutlined } from "@ant-design/icons";
 
 const Navbar = () => {
   const { countQuantityCart } = useUserCart();
@@ -16,18 +17,31 @@ const Navbar = () => {
   // console.log('newPathName: ', newPathName);
 
   // localStorage.getItem("user") => no la string
-  const useInfo = JSON.parse(localStorage.getItem("user") as string); // chuyen string thanh object
-  console.log("useInfo: ", useInfo);
+  const userInfo = JSON.parse(localStorage.getItem("user") as string); // chuyen string thanh object
+  console.log("userInfo: ", userInfo);
 
   const hanldeLogout = () => {
-    navigate('/login');
+    navigate("/login");
     localStorage.clear();
-  }
+  };
 
   const content = (
     <div>
-      <p className="font-bold text-center text-purple-500">{useInfo?.name}</p>
-      <button onClick={hanldeLogout} className="mt-4 bg-blue-600 text-white px-2 py-1 rounded-md hover:bg-blue-700 transition-colors text-sm font-medium cursor-pointer !rounded-button whitespace-nowrap">
+      <p className="font-bold text-center text-purple-500 mb-2">
+        {userInfo?.name}
+      </p>
+      <hr />
+      <div onClick={() => {
+        navigate(`/order/${userInfo.id}`)
+      }} className="flex gap-2 m-1 cursor-pointer">
+        <p className="text-green-700 font-bold">Đơn hàng</p>
+        <ShoppingOutlined className="text-green-700" />
+      </div>
+      <hr />
+      <button
+        onClick={hanldeLogout}
+        className="mt-4 bg-blue-600 text-white px-2 py-1 rounded-md hover:bg-blue-700 transition-colors text-sm font-medium cursor-pointer !rounded-button whitespace-nowrap"
+      >
         Đăng xuất
       </button>
     </div>
@@ -112,7 +126,7 @@ const Navbar = () => {
 
         {/* User Actions */}
         <div className="flex items-center space-x-5">
-          {useInfo ? (
+          {userInfo ? (
             <div className="flex gap-4">
               <button
                 onClick={() => navigate("/cart")}
